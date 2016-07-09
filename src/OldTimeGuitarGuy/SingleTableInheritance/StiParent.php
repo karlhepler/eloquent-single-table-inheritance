@@ -81,7 +81,7 @@ abstract class StiParent extends Model
         static::stiEnforceChildren();
 
         // We create the model based on the keyed type
-        $class = static::$stiChildren[$attributes->{static::$stiKey}];
+        $class = static::stiChildren()[$attributes->{static::$stiKey}];
         $model = new $class;
         $model->exists = true;
 
@@ -108,7 +108,7 @@ abstract class StiParent extends Model
         }
 
         // If there are no children, throw an exception
-        if ( empty(static::$stiChildren) ) {
+        if ( empty(static::stiChildren()) ) {
             throw new Exceptions\StiException('No children defined.');
         }
 
@@ -133,7 +133,17 @@ abstract class StiParent extends Model
 
         // Get it, set it, & return it
         return static::$stiKeyedType = array_get(
-            array_flip(static::$stiChildren), static::class
+            array_flip(static::stiChildren()), static::class
         );
+    }
+
+    /**
+     * Get the single table inheritance children
+     *
+     * @return array
+     */
+    protected static function stiChildren()
+    {
+        return static::$stiChildren;
     }
 }
