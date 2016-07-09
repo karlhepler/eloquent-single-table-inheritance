@@ -12,10 +12,10 @@ an Eloquent model of your choice, defined by a column in that table
 
 For instance, imagine you have the following table:
 
-id | name | sex
------------------
-1  | Fred | boy
-2  | Jill | girl
+| id | name | sex  |
+| -----------------|
+| 1  | Fred | boy  |
+| 2  | Jill | girl |
 
 ... and imagine you had the following classes:
 
