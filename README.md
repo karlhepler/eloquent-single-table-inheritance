@@ -19,7 +19,7 @@ For instance, imagine you have the following table:
 
 ... and imagine you had the following classes:
 
-```
+```php
 class Person extends StiParent
 {
     protected static $stiKey = 'sex';
@@ -28,16 +28,12 @@ class Person extends StiParent
         'girl' => Girl::class,
     ];
 }
-```
 
-```
 class Boy extends Person
 {
     //
 }
-```
 
-```
 class Girl extends Person
 {
     //
