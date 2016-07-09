@@ -22,8 +22,8 @@ For instance, imagine you have the following table:
 ```
 class Person extends StiParent
 {
-    protected $stiKey = 'sex';
-    protected $stiChildren = [
+    protected static $stiKey = 'sex';
+    protected static $stiChildren = [
         'boy' => Boy::class,
         'girl' => Girl::class,
     ];
