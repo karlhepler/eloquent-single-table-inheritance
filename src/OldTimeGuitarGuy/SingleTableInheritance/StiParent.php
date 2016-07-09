@@ -31,23 +31,6 @@ abstract class StiParent extends Model
     protected static $stiChildren = [];
 
     /**
-     * This variable is a quick reference
-     * to tell us if the sti children were
-     * already checked
-     *
-     * @var boolean
-     */
-    protected static $stiChildrenChecked = false;
-
-    /**
-     * Once we figure out the sti keyed type,
-     * we save it here for quick reference
-     *
-     * @var string
-     */
-    protected static $stiKeyedType;
-
-    /**
      * !! OVERRIDE ELOQUENT MODEL !!
      * Create a new Eloquent model instance.
      *
@@ -101,18 +84,10 @@ abstract class StiParent extends Model
      */
     protected static function stiEnforceChildren()
     {
-        // Return early if children have already been check
-        if ( static::$stiChildrenChecked ) {
-            return;
-        }
-
         // If there are no children, throw an exception
         if ( empty(static::stiChildren()) ) {
             throw new Exceptions\StiException('No children defined.');
         }
-
-        // We have just checked the children!
-        static::$stiChildrenChecked = true;
     }
 
     /**
@@ -122,16 +97,12 @@ abstract class StiParent extends Model
      */
     protected static function getKeyedTypeFromClassName()
     {
-        // If we've already done this, then just return what we've done
-        if ( isset(static::$stiKeyedType) ) {
-            return static::$stiKeyedType;
-        }
-
         // Make sure there are children
         static::stiEnforceChildren();
 
-        // Get it, set it, & return it
-        return static::$stiKeyedType = array_get(
+        // Get it from the flipped children,
+        // keyed by the current class
+        return array_get(
             array_flip(static::stiChildren()), static::class
         );
     }
