@@ -3,7 +3,6 @@
 namespace OldTimeGuitarGuy\SingleTableInheritance;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Instead of extending from Laravel's Eloquent Model,

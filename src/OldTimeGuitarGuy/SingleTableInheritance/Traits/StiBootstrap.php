@@ -2,6 +2,8 @@
 
 namespace OldTimeGuitarGuy\SingleTableInheritance\Traits;
 
+use Illuminate\Database\Eloquent\Builder;
+
 trait StiBootstrap
 {
     /**
