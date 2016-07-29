@@ -52,3 +52,5 @@ UNFORTUNATELY
 
 1. You cannot make your `Person` class abstract.
 2. You must specify the table on the parent
+3. When creating a `hasMany` association, you must make sure you specify the foreign key. Otherwise, it will try to automatically generate one from the class name.
+
