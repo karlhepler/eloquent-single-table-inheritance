@@ -14,15 +14,19 @@ trait StiBootstrap
      */
     protected static function bootStiBootstrap()
     {
+        // Assign local variables
+        $type = static::getKeyedTypeFromClassName();
+        $key = static::$stiKey;
+
         // Doing this allows us to get all children in one request
         // if we do that request from the parent
-        if ( is_null(static::getKeyedTypeFromClassName()) ) {
+        if ( is_null($type) ) {
             return;
         }
 
         // Only return queries for models of the same type
-        static::addGlobalScope(static::$stiKey, function (Builder $builder) {
-            $builder->where(static::$stiKey, static::getKeyedTypeFromClassName());
+        static::addGlobalScope($key, function (Builder $builder) use ($key, $type) {
+            $builder->where($key, $type);
         });
     }
 }
