@@ -97,9 +97,6 @@ abstract class StiParent extends Model
      */
     protected static function getKeyedTypeFromClassName()
     {
-        // Make sure there are children
-        static::stiEnforceChildren();
-
         // Get it from the flipped children,
         // keyed by the current class
         return array_get(
