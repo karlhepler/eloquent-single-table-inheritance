@@ -62,6 +62,11 @@ abstract class StiParent extends Model
     {
         static::stiEnforceChildren();
 
+        // If there isn't a key set, just return the default
+        if (! isset($attributes->{static::$stiKey})) {
+            return parent::newFromBuilder($attributes, $connection);
+        }
+
         // We create the model based on the keyed type
         $class = static::stiChildren()[$attributes->{static::$stiKey}];
         $model = new $class;
